@@ -36,7 +36,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "generate-changelog": "^1.7.1",
     "husky": "^1.1.4",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "jest-silent-reporter": "^0.1.1"
   },
   "dependencies": {
     "@storybook/addons": "^4.0.0"
@@ -49,7 +50,7 @@
   },
   "scripts": {
     "build:clean": "rm -rf dist/*",
-    "build:babel": "babel -d dist -s --ignore *.test.js src",
+    "build:babel": "babel -d dist -s --ignore 'src/**/*.spec.js','src/**/*.test.js' src",
     "build:babel:prod": "cross-env NODE_ENV=production $npm_execpath run build:babel",
     "build:copy:changelog": "cp CHANGELOG.md dist 2>/dev/null || :",
     "build:copy:readme": "cp README.md dist 2>/dev/null || :",
@@ -68,9 +69,9 @@
     "reset:clean": "rm -rf node_modules package-lock.json",
     "reset:install": "$npm_execpath install",
     "postinstall": "$npm_execpath run build",
-    "test": "cross-env CI=true $npm_execpath run test:no-ci",
-    "test:no-ci": "jest",
-    "test:watch": "$npm_execpath run test:no-ci -- --watch",
+    "test": "$npm_execpath run test:jest -- --reporters jest-silent-reporter",
+    "test:jest": "jest",
+    "test:watch": "$npm_execpath run test:jest -- --watch",
     "watch": "$npm_execpath run build:babel -- -w"
   }
 }
