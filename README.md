@@ -1,2 +1,3 @@
-# storybook-addon-fix-responsive-devtools
-Fix responsive using browser devtools
+# storybook-addon-devtools-viewport
+
+> Adjust meta tag viewport for responsive tools on browser devtools
